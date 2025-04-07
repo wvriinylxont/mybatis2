@@ -14,7 +14,7 @@ public interface MemoDao {
 
   // rownum=1로 결과의 개수를 오라클에게 알려준다
   @Select("select * from memo where mno=#{mno} and rownum=1")
-  public Memo findByMno(int mno);
+  Optional<Memo> findByMno(int mno);
 
   @Update("update memo set content=#{content} where mno=#{mno} and rownum=1")
   public int update(String content, int mno);

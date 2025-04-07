@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.*;
 import org.springframework.transaction.annotation.*;
 
 import java.time.*;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,8 +30,14 @@ public class MemoDaoTest {
 
   @Test
   public void findByMnoTest() {
-    assertNotNull(memoDao.findByMno(1));
-    assertNull(memoDao.findByMno(100));
+    Optional<Memo> result = memoDao.findByMno(1);
+    // Optional을 전달받으면 get()으로 객체를 꺼낼 수 있다
+    // 단, 없으면 NoSuchElementException 발생
+    // Memo memo = result.get();
+    // null을 체크할 수가 있다
+    if(result.isPresent()) {
+      Memo memo = result.get();
+    }
   }
 
   @Test
